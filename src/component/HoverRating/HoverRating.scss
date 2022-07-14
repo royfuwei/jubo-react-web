@@ -1,0 +1,12 @@
+.HoverRating {
+    .label {
+        font-size: calc(6px + 1vmin);
+        padding: 0;
+        margin: 0;
+    }
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
