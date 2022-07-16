@@ -16,7 +16,7 @@ import { ICompoenetBaseProps } from '../../domain/interface/compoenents/base';
 import { NavPageConfig } from '../../domain/interface/common';
 
 
-const AppBarComponent = ({ content = [], name = 'Roy Chuang' }: ICompoenetBaseProps<NavPageConfig[]>) => {
+const AppBarComponent = ({ content = [], name = '' }: ICompoenetBaseProps<NavPageConfig[]>) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
