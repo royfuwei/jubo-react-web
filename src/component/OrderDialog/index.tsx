@@ -1,16 +1,10 @@
 import './OrderDialog.scss';
-import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogProps, DialogTitle, IconButton, List, ListItem, ListItemIcon } from "@mui/material"
-import { useState } from "react";
-import { RespOrders, OrderDTO } from '../../domain/dto/core/orders';
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle, List, ListItem } from "@mui/material"
+import { OrderDTO } from '../../domain/dto/core/orders';
 import { OrderListItemComponent } from '../OrderListItem/index';
-import AddIcon from '@mui/icons-material/Add';
 import AssignmentIcon from '@mui/icons-material/Assignment';
-import { ICompoenetBaseProps } from '../../domain/interface/compoenents/base';
+import { OrderDialogProps } from '../../domain/interface/compoenents/OrderDialog';
 
-interface OrderDialogProps<T> extends ICompoenetBaseProps<T> {
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  open: boolean;
-}
 
 const testData: OrderDTO[] = []
 

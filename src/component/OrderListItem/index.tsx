@@ -1,5 +1,5 @@
 import './OrderListItem.scss';
-import { Avatar, Button, IconButton, ListItem, ListItemAvatar, ListItemIcon, ListItemText } from '@mui/material';
+import { IconButton, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import { OrderDTO } from '../../domain/dto/core/orders';
@@ -14,9 +14,6 @@ export const OrderListItemComponent = ({ content = testData }: ICompoenetBasePro
                 <IconButton edge="end" aria-label="edit">
                     <EditIcon />
                 </IconButton>
-                // <Button variant="outlined" startIcon={<EditIcon />}>
-                //     Edit
-                // </Button>
             }
         >
             <ListItemIcon>

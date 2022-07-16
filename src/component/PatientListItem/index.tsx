@@ -1,15 +1,10 @@
 import './PatientListItem.scss';
 import { RespPatientData } from '../../domain/dto/core/patients';
-import { ICompoenetBaseProps } from '../../domain/interface/compoenents/base';
 import { Avatar, Button, ListItem, ListItemAvatar, ListItemText } from '@mui/material';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import { PatientListItemProps } from '../../domain/interface/compoenents/PatientListItem';
 
 const testData: RespPatientData = new RespPatientData();
-
-interface PatientListItemProps<T> extends ICompoenetBaseProps<T> {
-    clickOrderButton?: Function
-}
-
 
 export const PatientListItemComponent = (
     { 
