@@ -2,10 +2,9 @@ import './OrderListItem.scss';
 import { Box, IconButton, ListItem, ListItemIcon, ListItemText, TextField } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import CheckIcon from '@mui/icons-material/Check';
-import ClearIcon from '@mui/icons-material/Clear';
+import CloseIcon from '@mui/icons-material/Close';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import { OrderDTO } from '../../domain/dto/core/orders';
-import { ICompoenetBaseProps } from '../../domain/interface/compoenents/base';
 import { useState } from 'react';
 import { OrderListItemProps } from '../../domain/interface/compoenents/OrderListItem';
 
@@ -30,7 +29,7 @@ export const OrderListItemComponent = ({ listenSave = () => {}, content = testDa
         setIsEdit(false);
     }
 
-    const clickClearButton = () => {
+    const clickCloseButton = () => {
         setIsEdit(false);
     }
 
@@ -44,8 +43,8 @@ export const OrderListItemComponent = ({ listenSave = () => {}, content = testDa
         } else {
             return (
                 <>
-                    <IconButton edge="end" aria-label="clear" onClick={clickClearButton}>
-                        <ClearIcon />
+                    <IconButton edge="end" aria-label="close" onClick={clickCloseButton}>
+                        <CloseIcon />
                     </IconButton>
                     <IconButton edge="end" aria-label="check" onClick={clickSaveButton}>
                         <CheckIcon />
