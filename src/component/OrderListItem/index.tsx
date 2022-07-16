@@ -12,7 +12,7 @@ const testData: OrderDTO = new OrderDTO();
 
 
 
-export const OrderListItemComponent = ({ listenSave = () => {}, content = testData }: OrderListItemProps<OrderDTO>) => {
+export const OrderListItemComponent = ({ listenOrderSave, content = testData }: OrderListItemProps<OrderDTO>) => {
     const [isEdit, setIsEdit] = useState(false);
     const [message, setMessage] = useState(content.message);
 
@@ -25,7 +25,8 @@ export const OrderListItemComponent = ({ listenSave = () => {}, content = testDa
     }
 
     const clickSaveButton = () => {
-        listenSave();
+        const updateMessage = message;
+        listenOrderSave(content, updateMessage);
         setIsEdit(false);
     }
 

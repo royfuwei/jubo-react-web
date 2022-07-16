@@ -12,11 +12,11 @@ import { useState } from 'react';
 const testData: OrderDTO[] = []
 
 export const OrderDialogComponent = (
-  { name, listenCreate, content = testData, open = false, setOpen}: OrderDialogProps<OrderDTO[]>
+  { name, patient, listenOrderCreate, listenOrderSave, content = testData, open = false, setOpen}: OrderDialogProps<OrderDTO[]>
 ) => {
   const [isCreate, setIsCreate] = useState<boolean>(false);
   const genOrderListItems = () => content.map(order => (
-    <OrderListItemComponent key={order.id} content={order}/>
+    <OrderListItemComponent key={order.id} content={order} listenOrderSave={listenOrderSave}/>
   ))
   const [message, setMessage] = useState('');
 
@@ -35,7 +35,7 @@ export const OrderDialogComponent = (
 
   const clickSaveButton = () => {
     const newMessage = message;
-    listenCreate(newMessage);
+    listenOrderCreate(patient, newMessage);
     setIsCreate(false);
   }
 

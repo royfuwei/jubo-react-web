@@ -6,7 +6,7 @@ import { PatientListItemComponent } from '../../component/PatientListItem';
 import { PageTitleComponent } from '../../component/PageTitle';
 import { OrderListItemComponent } from '../../component/OrderListItem';
 import { OrderDialogComponent } from '../../component/OrderDialog';
-import { RespPatientData } from '../../domain/dto/core/patients';
+import { RespPatientData, PatientDTO } from '../../domain/dto/core/patients';
 import { OrderDTO } from '../../domain/dto/core/orders';
 
 const testData: RespPatientData[] = [
@@ -65,6 +65,9 @@ export const MainPage = () => {
         setOpen(true);
     }
 
+    const creeateOrder = (patient: PatientDTO, message: string) => {};
+    const updateOrder = (order: OrderDTO, message: string) => {};
+
     useEffect(() => {
         asyncData();
         console.log(`app: ${app}`);
@@ -78,7 +81,7 @@ export const MainPage = () => {
                     { genPatientList() }
                 </List>
             </Container>
-            <OrderDialogComponent name={selectPatient.name} open={open} content={orders} setOpen={setOpen} />
+            <OrderDialogComponent name={selectPatient.name} patient={selectPatient} listenOrderCreate={creeateOrder} listenOrderSave={updateOrder} open={open} content={orders} setOpen={setOpen} />
         </div>
     );
 };
