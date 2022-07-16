@@ -1,4 +1,4 @@
-export interface ICompoenetBaseProps<T> {
+export interface ICompoenetBaseProps<T = any> {
     name?: string; 
     content?: T;
     count?: number;

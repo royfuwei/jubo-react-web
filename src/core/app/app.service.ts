@@ -5,7 +5,7 @@ export class AppService {
         name: string
     }> {
         return {
-            name: 'ts-react-arch',
+            name: 'Jubo測驗小專案',
         };
     }
 
