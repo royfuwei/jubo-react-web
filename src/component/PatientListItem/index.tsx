@@ -8,7 +8,7 @@ const testData: RespPatientData = new RespPatientData();
 
 export const PatientListItemComponent = (
     { 
-        content = testData, clickOrderButton = () => console.log('hihi') }: PatientListItemProps<RespPatientData>
+        content = testData, clickOrderButton = () => {} }: PatientListItemProps<RespPatientData>
     ) => {
     const onClick = () => {
         clickOrderButton();

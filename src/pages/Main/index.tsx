@@ -4,59 +4,42 @@ import { AppService } from '../../core/app/app.service';
 import { useEffect, useState } from 'react';
 import { PatientListItemComponent } from '../../component/PatientListItem';
 import { PageTitleComponent } from '../../component/PageTitle';
-import { OrderListItemComponent } from '../../component/OrderListItem';
 import { OrderDialogComponent } from '../../component/OrderDialog';
 import { RespPatientData, PatientDTO } from '../../domain/dto/core/patients';
 import { OrderDTO } from '../../domain/dto/core/orders';
-
-const testData: RespPatientData[] = [
-    {
-        id: 'patient1',
-        name: 'patient1',
-        orderIds: [],
-        orders: [
-            {
-                id: 'orderId1',
-                message: 'test'
-            },
-            {
-                id: 'orderId11',
-                message: 'test11'
-            },
-        ]
-    },
-    {
-        id: 'patient2',
-        name: 'patient2',
-        orderIds: [],
-        orders: [
-            {
-                id: 'orderId2',
-                message: 'test2'
-            }
-        ]
-    }
-]; 
+import { PatientsService } from '../../core/patients/patients.service';
+import { OrdersService } from '../../core/orders/orders.service';
 
 export const MainPage = () => {
     const appService = new AppService();
+    const patientsService = new PatientsService();
+    const ordersService = new OrdersService();
     const [app, setApp] = useState(`App`);
     const [open, setOpen] = useState(false);
     const [orders, setOrders] = useState<OrderDTO[]>([]);
-    const [selectPatient, setSelectPatient] = useState<RespPatientData>(testData[0]);
+    const [selectPatient, setSelectPatient] = useState<RespPatientData>(new RespPatientData());
+    const [patients, setPatients] = useState<RespPatientData[]>([]);
+
     const asyncData = async () => {
         const data = await appService.getApp();
+        const { items } = await patientsService.getAll();
         setApp(data.name);
+        setPatients(items);
     };
 
-    const genPatientList = () => testData.map(patient => (
+    const asyncGetOrders = async (patient: PatientDTO) => {
+        const { items } = await ordersService.getManyByPatientId(patient.id);
+        setOrders(items);
+    }
+
+    const genPatientList = () => patients.map(patient => (
         <PatientListItemComponent 
             key={patient.id} content={patient}
             name={patient.name}
-            clickOrderButton={() => {
-                openOrderDialog();
-                setOrders(patient.orders);
+            clickOrderButton={async () => {
+                await asyncGetOrders(patient);
                 setSelectPatient(patient);
+                openOrderDialog();
             }}
         /> 
     ));
@@ -65,12 +48,17 @@ export const MainPage = () => {
         setOpen(true);
     }
 
-    const creeateOrder = (patient: PatientDTO, message: string) => {};
-    const updateOrder = (order: OrderDTO, message: string) => {};
+    const creeateOrder = async (patient: PatientDTO, message: string) => {
+        await patientsService.createOrderById(patient.id, message);
+        await asyncGetOrders(patient);
+    };
+    
+    const updateOrder = async (order: OrderDTO, message: string) => {
+        await ordersService.updateById(order.id, message);
+    };
 
     useEffect(() => {
         asyncData();
-        console.log(`app: ${app}`);
     }, []);
 
     return (

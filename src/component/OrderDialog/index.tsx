@@ -92,7 +92,7 @@ export const OrderDialogComponent = (
       open={open} onClose={handleClose}
     >
       <DialogTitle >
-        { name }醫囑
+        { `${name}${name ? '的' : ''}` }醫囑
       </DialogTitle>
       <DialogContent>
         <List>

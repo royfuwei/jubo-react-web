@@ -11,4 +11,4 @@ export class RespPatientData extends PatientDTO {
     orders: OrderDTO[] = [];
 }
 
-export class RespPatients extends RespItems<PatientDTO> {}
+export class RespPatients extends RespItems<RespPatientData> {}
